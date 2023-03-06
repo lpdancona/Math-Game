@@ -28,3 +28,11 @@ def game_over?(player)
     return false
   end
 end
+
+# method to switch turns between the players
+def switch_players(player1, player2)
+  temp = player1
+  player1 = player2
+  player2 = temp
+  return player1, player2
+end

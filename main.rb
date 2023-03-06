@@ -36,3 +36,36 @@ def switch_players(player1, player2)
   player2 = temp
   return player1, player2
 end
+
+# Start the game loop
+puts "Welcome to the 2-Player Math Game!"
+
+current_player = player1
+
+loop do
+  # new question and prompt the current player to answer
+  answer = generate_question
+  print "#{current_player.name}, please enter your answer: "
+  player_answer = gets.chomp.to_i
+
+  # Check if the answer is correct and update the player's score/lives accordingly
+  if player_answer == answer
+    puts "YES! you are correct."
+    current_player.score = 3
+  else
+    puts "Seriously? No!"
+    current_player.lives -= 1
+  end
+
+  # Check if the game is over
+  if game_over?(current_player)
+    break
+  end
+
+  # Switch to the other player's turn
+  player1, player2 = switch_players(player1, player2)
+  current_player = (current_player == player1) ? player2 : player1
+
+  # Display each player's score and lives
+  puts "Score: #{player1.name} - #{player1.lives} / #{player1.score} lives    #{player2.name} - #{player2.lives} / #{player2.score} lives\n\n"
+end

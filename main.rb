@@ -18,3 +18,13 @@ end
 
 player1 = Player.new("Player 1")
 player2 = Player.new("Player 2")
+
+# method to check if a player has lost all their lives
+def game_over?(player)
+  if player.lives == 0
+    puts "#{player.name} is out of lives! Game over."
+    return true
+  else
+    return false
+  end
+end
